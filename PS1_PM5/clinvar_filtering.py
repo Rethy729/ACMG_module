@@ -1,7 +1,9 @@
 def clinvar_filtering():
     """
+    'clinvar.vcf' >> 'clinvar_pathogenic_missense.vcf'
+
     Clinvar database에서 다운받은 vcf 파일에서, pathogenic하면서 동시에 missense variant인 variant만을 모아 새로운 clinvar_pathogenic_missence.vcf를 만든다.
-    이 새로운 vcf파일은 추후 EC2 서버로 옮겨져, hgvs.p 옵션을 annotation하여 다시 가져오게 된다.
+    이 새로운 vcf파일은 추후 Amazon-EC2 서버로 옮겨져, hgvs과 mane 옵션을 annotation하여 다시 가져오게 된다.
     """
 
     vcf_file_path = 'clinvar.vcf'

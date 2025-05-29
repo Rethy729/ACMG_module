@@ -1,5 +1,7 @@
 def mane_filtering():
     """
+    'HG002_annotated_docker.txt' >> 'filtered_mane_select.tsv'
+
     raw data 에서 mane_select 된 variant data 만 filtering 하여 'filtered_mane_select.tsv' 로 저장 한다.
     이때 raw data는 MANE_SELECT 열을 가지고 있어야 하며, 가지고 있지 않으면 process가 중단 된다.
 
@@ -13,7 +15,7 @@ def mane_filtering():
 
     with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding='utf-8') as f_out:
         for line in f_in:
-            if line.startswith('#Uploaded_variation'): # header를 아직 찾지 못했고, line 이 header 일 때
+            if line.startswith('#Uploaded_variation'): #line 이 header 일 때
                 header = line.lstrip('#')
                 f_out.write(header)
                 header_split = header.strip().split('\t')
