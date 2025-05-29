@@ -1,11 +1,11 @@
 def mane_filtering():
     """
-    0.mane_filtering과 동일
-    clinvar_pathogenic_missense_hgvs_docker.txt >> filtered_mane_select_clinvar.tsv
+    0.mane_filtering과 동일한 기능을 하지만, output file이 parent directory에 생성된다. (1.main과 같은 directory에 위치해야 함)
+    clinvar_pathogenic_missense_hgvs_docker.txt >> ../filtered_mane_select_clinvar.tsv
     """
 
     file_path = 'clinvar_pathogenic_missense_hgvs_docker.txt'
-    output_path = 'filtered_mane_select_clinvar.tsv'
+    output_path = '../filtered_mane_select_clinvar.tsv'
 
     with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding='utf-8') as f_out:
         found_header = False
