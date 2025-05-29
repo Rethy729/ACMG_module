@@ -18,14 +18,6 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         variant_evidence = [None] * len(evidence)
         variant_data = line.strip().split('\t')
 
-        #print (variant_data)
-        #print (header.index('PolyPhen'))
-        #if 'inframe_insertion' in variant_data[6]:
-            #print (variant_data[6], variant_data[2], variant_data[3], variant_data[24])
-            #print (variant_data[24])
-        #if variant_data[24] != '-':
-            #print (variant_data[24])
-
         BS1_BA1_PM2.ba1_bs1_pm2(header, variant_data, variant_evidence)
         PP3_BP4.pp3_bp4(header, variant_data, variant_evidence)
         PP5_BP6.pp5_bp6(header, variant_data, variant_evidence)
