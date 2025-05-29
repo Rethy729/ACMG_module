@@ -1,7 +1,7 @@
-import BS1_BA1_PM2
-import PP3_BP4
-import PP5_BP6
-import PM4_BP3
+from BS1_BA1_PM2 import BS1_BA1_PM2
+from PP3_BP4 import PP3_BP4
+from PP5_BP6 import PP5_BP6
+from PM4_BP3 import PM4_BP3
 
 file_path = 'filtered_mane_select.tsv'
 output_path = 'ACMG_result.tsv'
@@ -17,6 +17,16 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
     for line in f_in:
         variant_evidence = [None] * len(evidence)
         variant_data = line.strip().split('\t')
+
+        #print (variant_data)
+        #print (header.index('HGVSc'))
+        #if 'inframe_insertion' in variant_data[6]:
+            #print (variant_data[6], variant_data[2], variant_data[3], variant_data[24])
+            #print (variant_data[24])
+        #if variant_data[26] != '-':
+            #print (variant_data[25], variant_data[26])
+
+        #PS1_PM5.ps1_pm5(header, variant_data, variant_evidence)
 
         BS1_BA1_PM2.ba1_bs1_pm2(header, variant_data, variant_evidence)
         PP3_BP4.pp3_bp4(header, variant_data, variant_evidence)

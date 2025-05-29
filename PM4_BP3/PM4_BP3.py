@@ -1,6 +1,5 @@
 def pm4_bp3(header, variant_data, variant_evidence):
     """
-
     :param header: annotate vep txt file의 열 정보가 순서대로 나열된 list
     :param variant_data: 한 variant의 정보가 순서대로 나열된 list
     :param variant_evidence: main의 variant_evidence list
