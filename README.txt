@@ -10,6 +10,7 @@ ACMG_result.tsv -> 결과
 2. 결과는 ACMG_result.tsv 에 저장
 
 추후 계획:
-1. BS1 & PM2 ratio 기준 reasoning
-2. test code 적용
-3. PS2 (de novo) 구현
+PM2 판별 module
+BS1 & PM2 정확한 threshold (gene에 연계된 disease의 정보와 그 disease의 유병률 / 성질을 알아야 함)
+PP3 & BP4 에 활용하기 위해 sift, polyphen 이외에 in-silico tool 추가하기 (MutationTaster, CADD)
+Test code

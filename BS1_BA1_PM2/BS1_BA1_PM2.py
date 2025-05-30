@@ -9,9 +9,9 @@ def ba1_bs1_pm2(header, variant_data, variant_evidence):
     gnomADe_AF의 값을 ratio로 저장
     ratio >= 0.05 -> BA1 이므로 대응 하는 variant_evidence[11] = True
     0.01 <= ratio < 0.05 -> BS1 이므로 대응 하는 variant_evidence[10] = True
-    ratio <= 0.0001 -> PM2 이므로 대응 하는 variant_evidence[2] = True
+    ratio == 0 -> PM2 이므로 대응 하는 variant_evidence[2] = True
 
-    추후 고려 사항: 0.01과 0.0001 << 이 숫자들의 타당성
+    추후 고려 사항: 0.01 << 이 숫자의 타당성
     """
 
     if 'gnomADe_AF' not in header:
@@ -25,5 +25,5 @@ def ba1_bs1_pm2(header, variant_data, variant_evidence):
             variant_evidence[11] = True
         elif 0.01 <= ratio < 0.05:
             variant_evidence[10] = True
-        elif ratio <= 0.0001:
+        elif ratio == 0 :
             variant_evidence[2] = True
