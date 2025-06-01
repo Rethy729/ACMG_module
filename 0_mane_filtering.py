@@ -10,7 +10,7 @@ def mane_filtering():
     '#'으로 시작하지 않는 data line은 variant data 로 저장, 이때 variant_data[mane_index] 가 '-'이 아닌 variant data 만 선별 하여 output에 write 한다.
     """
 
-    file_path = 'HG002_annotated_docker.txt'
+    file_path = 'HG002_annotated_docker_v2.txt'
     output_path = 'filtered_mane_select.tsv'
 
     with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding='utf-8') as f_out:

@@ -69,7 +69,7 @@ def ps1_pm5(header, variant_data, variant_evidence):
     두 variant의 hgvs.p가 다르다면 PM5를 부여하므로 대응 되는 variant_evidence[4] = True
     """
 
-    missing_option = [option for option in ['Location', 'Consequence', 'HGVSc', 'HGVSp'] if option not in header]
+    missing_option = [option for option in ['Location', 'Consequence', 'HGVSc', 'HGVSp', 'ClinVar_CLNSIG'] if option not in header]
     if missing_option:
         print(f"Please annotate {', '.join(missing_option).lower()}")
         return
@@ -77,16 +77,25 @@ def ps1_pm5(header, variant_data, variant_evidence):
     consequence_index = header.index('Consequence')
     hgvs_c_index = header.index('HGVSc')
     hgvs_p_index = header.index('HGVSp')
+    clinvar_clinsig_index = header.index('ClinVar_CLNSIG')
 
     if variant_data[consequence_index] == 'missense_variant':
-        clinvar_dict = clinvar_dict_generator()  # main에서 ps1_pm5가 여러번 호출되어도 dictionary 생성은 단 한번 이루어진다.
-        location_data = variant_data[location_index][3:]
-        matches = clinvar_dict.get(location_data, [])
-        if matches:
-            hgvs_c, hgvs_p = variant_data[hgvs_c_index], variant_data[hgvs_p_index]
-            for clinvar_c, clinvar_p in matches:
-                if hgvs_c != clinvar_c:
-                    if hgvs_p == clinvar_p:
-                        variant_evidence[0] = True
-                    else:
-                        variant_evidence[4] = True
+
+        clnsig_data = variant_data[clinvar_clinsig_index]
+        if 'Pathogenic' in clnsig_data: # missense variant 중 clnsig 가 pathogenic 한 데이터는 PS1으로 분류
+            variant_data[0] = True
+            return
+
+        else:  # 그 외의 경우, 기존 clinvar database를 파싱한 clinvar_dict에서 찾는다 (이런 경우, hgvs_c가 다른 경우)
+            clinvar_dict = clinvar_dict_generator()  # main에서 ps1_pm5가 여러번 호출되어도 dictionary 생성은 단 한번 이루어진다.
+            location_data = variant_data[location_index][3:]
+            matches = clinvar_dict.get(location_data, [])
+            if matches:
+                hgvs_c, hgvs_p = variant_data[hgvs_c_index], variant_data[hgvs_p_index]
+                for clinvar_c, clinvar_p in matches:
+                    if hgvs_c != clinvar_c:
+                        if hgvs_p == clinvar_p:
+                            variant_evidence[0] = True
+                        else:
+                            variant_evidence[4] = True
+                            print (clnsig_data)
