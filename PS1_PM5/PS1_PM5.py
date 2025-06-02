@@ -62,7 +62,9 @@ def ps1_pm5(header, variant_data, variant_evidence):
 
     해당 evidence 판별에 필요한 Location, Consequence, HGVSc, HGVSp data가 없는 경우 아무것도 하지 않고 return
 
-    variant_data의 consequence가 missense_variant라면, clinvar_dict_generator()를 통해 clinvar의 missense variant data를 담은 dictionary를 불러온다.
+    missense variant 중 clnsig 가 pathogenic 한 데이터는 PS1을 부여하여 variant_evidence[0] = True
+
+    그 외의 clnsig를 가지는 missense variant 정보를 처리하기 위해 clinvar_dict_generator()를 통해 clinvar의 missense variant data를 담은 dictionary를 불러온다.
     이후, 이 variant의 location이 clinvar database (dictionary)안에 존재한다면,
     우선 두 variant의 hgvs.c를 비교하여 다른 경우에만 hgvs.p를 비교한다.
     두 variant의 hgvs.p가 같다면 PS1을 부여하므로 대응 되는 variant_evidence[0] = True
@@ -98,4 +100,3 @@ def ps1_pm5(header, variant_data, variant_evidence):
                             variant_evidence[0] = True
                         else:
                             variant_evidence[4] = True
-                            print (clnsig_data)

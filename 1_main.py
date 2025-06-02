@@ -15,7 +15,6 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
     next(f_in) # header 건너 뛰기
 
     evidence_count_list = [0] * len(evidence)
-
     f_out.write('variant\t' + '\t'.join(evidence) + '\n')
     for line in f_in:
         variant_evidence = [False] * len(evidence)
