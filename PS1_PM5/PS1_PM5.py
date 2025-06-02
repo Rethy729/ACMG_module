@@ -62,7 +62,9 @@ def ps1_pm5(header, variant_data, variant_evidence):
 
     해당 evidence 판별에 필요한 Location, Consequence, HGVSc, HGVSp data가 없는 경우 아무것도 하지 않고 return
 
-    missense variant 중 clnsig 가 pathogenic 한 데이터는 PS1을 부여하여 variant_evidence[0] = True
+    missense variant 중 ClinVar_CLNSIG 가 pathogenic 이며
+    ClinVar_CLNREVSTAT 이 'practice_guideline', 'reviewed_by_expert_panel', 'criteria_provided,_multiple_submitters,_no_conflicts', 'criteria_provided,_single_submitter'
+    인 경우에 한해 PS1을 부여하여 variant_evidence[0] = True
 
     그 외의 clnsig를 가지는 missense variant 정보를 처리하기 위해 clinvar_dict_generator()를 통해 clinvar의 missense variant data를 담은 dictionary를 불러온다.
     이후, 이 variant의 location이 clinvar database (dictionary)안에 존재한다면,
@@ -71,7 +73,7 @@ def ps1_pm5(header, variant_data, variant_evidence):
     두 variant의 hgvs.p가 다르다면 PM5를 부여하므로 대응 되는 variant_evidence[4] = True
     """
 
-    missing_option = [option for option in ['Location', 'Consequence', 'HGVSc', 'HGVSp', 'ClinVar_CLNSIG'] if option not in header]
+    missing_option = [option for option in ['Location', 'Consequence', 'HGVSc', 'HGVSp', 'ClinVar_CLNSIG', 'ClinVar_CLNREVSTAT'] if option not in header]
     if missing_option:
         print(f"Please annotate {', '.join(missing_option).lower()}")
         return
@@ -80,15 +82,21 @@ def ps1_pm5(header, variant_data, variant_evidence):
     hgvs_c_index = header.index('HGVSc')
     hgvs_p_index = header.index('HGVSp')
     clinvar_clinsig_index = header.index('ClinVar_CLNSIG')
+    clinvar_clnrevstat_index = header.index('ClinVar_CLNREVSTAT')
 
-    if variant_data[consequence_index] == 'missense_variant':
+    consequence_data = variant_data[consequence_index]
+    if consequence_data == 'missense_variant':
 
         clnsig_data = variant_data[clinvar_clinsig_index]
-        if 'Pathogenic' in clnsig_data: # missense variant 중 clnsig 가 pathogenic 한 데이터는 PS1으로 분류
-            variant_data[0] = True
+        clnrevstat = variant_data[clinvar_clnrevstat_index]
+        pass_status = ['practice_guideline', 'reviewed_by_expert_panel',
+                       'criteria_provided,_multiple_submitters,_no_conflicts', 'criteria_provided,_single_submitter']
+
+        if 'Pathogenic' in clnsig_data and clnrevstat in pass_status: # missense variant 중 clnsig 가 pathogenic 한 데이터는 PS1으로 분류
+            variant_evidence[0] = True
             return
 
-        else:  # 그 외의 경우, 기존 clinvar database를 파싱한 clinvar_dict에서 찾는다 (이런 경우, hgvs_c가 다른 경우)
+        else:  # 그 외의 경우
             clinvar_dict = clinvar_dict_generator()  # main에서 ps1_pm5가 여러번 호출되어도 dictionary 생성은 단 한번 이루어진다.
             location_data = variant_data[location_index][3:]
             matches = clinvar_dict.get(location_data, [])
