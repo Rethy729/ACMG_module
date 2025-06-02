@@ -10,6 +10,10 @@ output_path = 'ACMG_result.tsv'
 with open(file_path, encoding='utf-8') as f:
     header = f.readline().strip().split('\t') # header
 
+uploaded_variation_index = header.index('Uploaded_variation')
+allele_index = header.index('Allele')
+mane_select_index = header.index('MANE_SELECT')
+
 evidence = ['PS1', 'PS2', 'PM2', 'PM4', 'PM5', 'PP3', 'PP5', 'BP3', 'BP4', 'BP6', 'BS1', 'BA1']
 with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding='utf-8') as f_out:
     next(f_in) # header 건너 뛰기
@@ -20,11 +24,11 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         variant_evidence = [False] * len(evidence)
         variant_data = line.strip().split('\t')
 
-        consequence_index = header.index('Consequence')
-        domains_index = header.index('DOMAINS')
-        if variant_data[domains_index] != '-':
-            print (variant_data[domains_index])
-            print (variant_data[consequence_index])
+        #domains_index = header.index('DOMAINS')
+        #if variant_data[domains_index] != '-':
+        #print (variant_data[mane_select_index-1])
+        #print (variant_data[mane_select_index+1])
+        #print (variant_data[consequence_index])
 
         PS1_PM5.ps1_pm5(header, variant_data, variant_evidence)
         BS1_BA1_PM2.ba1_bs1_pm2(header, variant_data, variant_evidence)
@@ -36,8 +40,11 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
             if b:
                 evidence_count_list[i] += 1
 
+        uploaded_variation_data = variant_data[uploaded_variation_index]
+        allele_data = variant_data[allele_index]
+        mane_select_data = variant_data[mane_select_index]
         output_line = ['Yes' if b is True else 'x' for b in variant_evidence]
-        f_out.write(variant_data[0]+ '\t' + variant_data[2] + '\t' + '\t'.join(output_line) + '\n')
+        f_out.write(uploaded_variation_data + '\t' + allele_data + '\t' + mane_select_data + '\t'.join(output_line) + '\n')
 
     print ('Complete')
     print (evidence_count_list)
