@@ -12,7 +12,7 @@ def ba1_bs1_pm2(header, variant_data, variant_evidence):
     ratio <= 0.0001 -> PM2 이므로 대응 하는 variant_evidence[2] = True
 
     0.01 (1%) 는 Carrier frequency 기준 (보인자)
-    0.00001 (0.001%) 는 Incidence 기준 (유병률) ( (4억/80억) / 5000 = 0.00001 )
+    0.00001 (0.001%) 는 Incidence 기준 (유병률) ( (4억/80억) / (5000~7000) ~= 0.00001 )
     """
 
     if 'gnomADg_AF' not in header:

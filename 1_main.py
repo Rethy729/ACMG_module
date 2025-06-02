@@ -20,6 +20,12 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         variant_evidence = [False] * len(evidence)
         variant_data = line.strip().split('\t')
 
+        consequence_index = header.index('Consequence')
+        domains_index = header.index('DOMAINS')
+        if variant_data[domains_index] != '-':
+            print (variant_data[domains_index])
+            print (variant_data[consequence_index])
+
         PS1_PM5.ps1_pm5(header, variant_data, variant_evidence)
         BS1_BA1_PM2.ba1_bs1_pm2(header, variant_data, variant_evidence)
         PP3_BP4.pp3_bp4(header, variant_data, variant_evidence)
