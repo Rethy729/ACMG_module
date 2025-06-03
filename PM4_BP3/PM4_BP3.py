@@ -59,11 +59,11 @@ def pm4_bp3(header, variant_data, variant_evidence):
         interval_starts = [int(start) for start, _ in intervals]
         idx = bisect.bisect_right(interval_starts, int(start))
 
-        if idx == 0: # variant가 모든 구간 시작보다 앞에 위치할 때
+        if idx == 0: # variant가 모든 구간 시작보다 앞에 위치할 때, 어차피 겹치는 구간 없으므로 PM4
             variant_evidence[3] = True
         else:
             interval_start, interval_end = intervals[idx - 1] # idx-1인 이유는 bisect_right이기 때문
-            if int(interval_start) <= int(start) and int(end) <= int(interval_end): # variant 구간이 rmsk 구간과 완전히 겹치는 경우
+            if int(interval_start) <= int(start) and int(end) <= int(interval_end): # variant 구간이 rmsk 구간과 완전히 겹치는 경우, BP3
                 variant_evidence[7] = True
             else:
                 variant_evidence[3] = True
