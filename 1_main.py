@@ -24,9 +24,10 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         variant_evidence = [False] * len(evidence)
         variant_data = line.strip().split('\t')
 
-        #domains_index = header.index('DOMAINS')
-        #if variant_data[domains_index] != '-':
-        #print (variant_data[mane_select_index-1])
+        #consequence_index = header.index('Consequence')
+        #if 'inframe_' in variant_data[consequence_index]:
+            #print (variant_data[0], variant_data[1])
+            #count += 1
         #print (variant_data[mane_select_index+1])
         #print (variant_data[consequence_index])
 

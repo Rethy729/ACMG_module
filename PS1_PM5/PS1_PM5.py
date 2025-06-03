@@ -6,12 +6,11 @@ import re
 def clinvar_dict_generator():
     """
     filtered_mane_select_clinvar.tsv 파일을 읽어, clinvar_dict를 생성하여 return한다.
-    이 dictionary 생성 과정은 @lru_cache(maxsize=1) 에 의해 처음 딱 한번만 진행된다. (1.main에서 호출할 때마다 dictionary를 다시 만드는 비효율적인 과정을 방지하기 위해)
+    이 dictionary 생성 과정은 @lru_cache(maxsize=1) 에 의해 처음 딱 한번만 진행된다. (1.main에서 호출할 때마다 dictionary를 다시 만드는 비효율적인 과정을 방지하기 위함)
 
     이 clinvar_dict는 다음과 같은 구조를 가진다:
     filtered_mane_select_clinvar.tsv파일의 모든 data 중, consequence가 missense variant 인 data에 한하여,
-    position(key) 과
-    그 position에 존재하는 모든 [hgvs.c, hgvs.p]쌍들의 list (value) 를 짝짓는다
+    position(key)과 그 position에 존재하는 모든 [hgvs.c, hgvs.p]쌍들의 list (value) 를 짝짓는다
 
     고려사항 1
     5836	5:137870830	G	ENSG00000120729	ENST00000239926	Transcript	missense_variant	484	179	60	S/C	tCt/tGt	-	MODERATE	-	1	-	MANE_Select	NM_006790.3	-	ENST00000239926.9:c.179C>G	ENSP00000239926.4:p.Ser60Cys	-
