@@ -3,6 +3,7 @@ from PP3_BP4 import PP3_BP4
 from PP5_BP6 import PP5_BP6
 from PM4_BP3 import PM4_BP3
 from PS1_PM5 import PS1_PM5
+from PS2 import PS2
 
 file_path = 'filtered_mane_select.tsv'
 output_path = 'ACMG_result.tsv'
@@ -37,6 +38,7 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         PP3_BP4.pp3_bp4(header, variant_data, variant_evidence)
         PP5_BP6.pp5_bp6(header, variant_data, variant_evidence)
         PM4_BP3.pm4_bp3(header, variant_data, variant_evidence)
+        PS2.ps2(header, variant_data, variant_evidence)
 
         for i, b in enumerate(variant_evidence):
             if b:
@@ -48,6 +50,6 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         output_line = ['Yes' if b is True else 'x' for b in variant_evidence]
         f_out.write(uploaded_variation_data + '\t' + allele_data + '\t' + mane_select_data + '\t' + '\t'.join(output_line) + '\n')
 
-    print (total_line)
+    print(f'Total data line: {total_line}')
     print (evidence_count_list)
     print ('Complete')
