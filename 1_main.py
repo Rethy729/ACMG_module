@@ -1,9 +1,12 @@
+import time
+from PS2 import PS2
 from BS1_BA1_PM2 import BS1_BA1_PM2
 from PP3_BP4 import PP3_BP4
 from PP5_BP6 import PP5_BP6
 from PM4_BP3 import PM4_BP3
 from PS1_PM5 import PS1_PM5
-from PS2 import PS2
+
+start_time = time.time()
 
 file_path = 'filtered_mane_select.tsv'
 output_path = 'ACMG_result.tsv'
@@ -44,6 +47,11 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         output_line = ['Yes' if b is True else 'x' for b in variant_evidence]
         f_out.write(uploaded_variation_data + '\t' + allele_data + '\t' + mane_select_data + '\t' + '\t'.join(output_line) + '\n')
 
-    print(f'Total data line: {total_line}')
-    print (evidence_count_list)
-    print ('Complete')
+end_time = time.time()
+elapsed_time = end_time - start_time
+
+print ('Run Complete!')
+print (f"Elapsed time: {elapsed_time:.2f}sec")
+print (f'Total data line: {total_line}')
+for i, count in enumerate(evidence_count_list):
+    print (f'{evidence[i]}: {count}')
