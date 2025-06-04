@@ -9,7 +9,7 @@ PS1_PM5 directory
 
 - clinvar_pathogenic_missense.vcf >> clinvar_pathogenic_missense_hgvs_docker.vcf
     위에서 생성한 clinvar_pathogenic_missense.vcf를 Amazon-EC2 서버로 복사해 vep annotation을 진행한다.
-    그 이유는 처음에 다운받았던 clinvar.vcf에는 hgvs.p 정보와 mane 정보가 없기 때문이다. 따라서 --hgvs 와 --mane 옵션을 반드시 활용한다.
+    이 단게를 거치는 이유는, 처음에 다운받았던 clinvar.vcf에는 hgvs.p 정보와 mane 정보가 없기 때문이다. 따라서 --hgvs 와 --mane 옵션을 반드시 활용한다.
 
 - clinvar_pathogenic_missense_hgvs_docker.vcf >> ../filtered_mane_select_clinvar.tsv
     mane_filtering.py 에 의해 수행된다.
