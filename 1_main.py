@@ -17,17 +17,18 @@ mane_select_index = header.index('MANE_SELECT')
 evidence = ['PS1', 'PS2', 'PM2', 'PM4', 'PM5', 'PP3', 'PP5', 'BP3', 'BP4', 'BP6', 'BS1', 'BA1']
 with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding='utf-8') as f_out:
     next(f_in) # header 건너 뛰기
+    total_line = 0
 
     evidence_count_list = [0] * len(evidence)
     f_out.write('variant\t' + '\t'.join(evidence) + '\n')
     for line in f_in:
         variant_evidence = [False] * len(evidence)
         variant_data = line.strip().split('\t')
+        total_line += 1
 
         #consequence_index = header.index('Consequence')
         #if 'inframe_' in variant_data[consequence_index]:
             #print (variant_data[0], variant_data[1])
-            #count += 1
         #print (variant_data[mane_select_index+1])
         #print (variant_data[consequence_index])
 
@@ -45,7 +46,8 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         allele_data = variant_data[allele_index]
         mane_select_data = variant_data[mane_select_index]
         output_line = ['Yes' if b is True else 'x' for b in variant_evidence]
-        f_out.write(uploaded_variation_data + '\t' + allele_data + '\t' + mane_select_data + '\t'.join(output_line) + '\n')
+        f_out.write(uploaded_variation_data + '\t' + allele_data + '\t' + mane_select_data + '\t' + '\t'.join(output_line) + '\n')
 
-    print ('Complete')
+    print (total_line)
     print (evidence_count_list)
+    print ('Complete')
