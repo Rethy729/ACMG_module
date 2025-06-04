@@ -27,12 +27,6 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         variant_data = line.strip().split('\t')
         total_line += 1
 
-        #consequence_index = header.index('Consequence')
-        #if 'inframe_' in variant_data[consequence_index]:
-            #print (variant_data[0], variant_data[1])
-        #print (variant_data[mane_select_index+1])
-        #print (variant_data[consequence_index])
-
         PS1_PM5.ps1_pm5(header, variant_data, variant_evidence)
         BS1_BA1_PM2.ba1_bs1_pm2(header, variant_data, variant_evidence)
         PP3_BP4.pp3_bp4(header, variant_data, variant_evidence)
