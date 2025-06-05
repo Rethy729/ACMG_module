@@ -53,6 +53,3 @@ class TestBA1BS1PM2(unittest.TestCase):
         variant_evidence = [False] * 12
         ba1_bs1_pm2(self.header, variant_data, variant_evidence)
         self.assertFalse(all(b for b in variant_evidence))
-
-if __name__ == '__main__':
-    unittest.main()

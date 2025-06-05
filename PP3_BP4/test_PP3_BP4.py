@@ -55,6 +55,3 @@ class TestPP3BP4(unittest.TestCase):
         variant_evidence = [False] * 12
         pp3_bp4(self.header, variant_data, variant_evidence)
         self.assertFalse(all(b for b in variant_evidence))
-
-if __name__ == '__main__':
-    unittest.main()

@@ -10,15 +10,18 @@ def pp5_bp6(header, variant_data, variant_evidence):
     """
 
     consequence_index = header.index('Consequence')
-    clinvar_clinsig_index = header.index('ClinVar_CLNSIG')  # 42
-    clinvar_clnrevstat_index = header.index('ClinVar_CLNREVSTAT')  # 43
+    clinvar_clinsig_index = header.index('ClinVar_CLNSIG')
+    clinvar_clnrevstat_index = header.index('ClinVar_CLNREVSTAT')
 
     clinsig = variant_data[clinvar_clinsig_index]
     clnrevstat = variant_data[clinvar_clnrevstat_index]
     consequence_data = variant_data[consequence_index]
 
     if clinsig != '-' and clnrevstat != '-':
-        pass_status = ['practice_guideline', 'reviewed_by_expert_panel', 'criteria_provided,_multiple_submitters,_no_conflicts', 'criteria_provided,_single_submitter']
+        pass_status = ['practice_guideline',
+                       'reviewed_by_expert_panel',
+                       'criteria_provided,_multiple_submitters,_no_conflicts',
+                       'criteria_provided,_single_submitter']
         if clnrevstat in pass_status:
             if clinsig == 'Benign':
                 variant_evidence[9] = True
