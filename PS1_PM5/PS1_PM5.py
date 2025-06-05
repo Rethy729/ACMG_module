@@ -92,7 +92,7 @@ def ps1_pm5(header, variant_data, variant_evidence):
         else:  # 그 외의 경우
             clinvar_dict = clinvar_dict_generator()  # main에서 ps1_pm5가 여러번 호출되어도 dictionary 생성은 단 한번 이루어진다.
             location_data = variant_data[location_index][3:]
-            matches = clinvar_dict.get(location_data, [])
+            matches = clinvar_dict.get(location_data, []) # location_data가 key에 있으면 해당 값을 반환, 없으면 default 값은 반환 (여기서는 [])
             if matches:
                 hgvs_c, hgvs_p = variant_data[hgvs_c_index], variant_data[hgvs_p_index]
                 for clinvar_c, clinvar_p in matches:
