@@ -36,7 +36,6 @@ def ps2(header, variant_data, variant_evidence):
     variant_data_tuple 이 de_novo_variant_set에 포함되어 있으면, PS2 를 부여하므로 대응 되는 variant_evidence[1] = True,
     """
 
-
     uploaded_variation_index = header.index('Uploaded_variation')
     allele_index = header.index('Allele')
 
