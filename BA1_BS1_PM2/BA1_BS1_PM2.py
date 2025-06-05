@@ -13,7 +13,7 @@ def ba1_bs1_pm2(header, variant_data, variant_evidence):
     0.00001 (0.001%) 는 Incidence 기준 (유병률) ( (4억/80억) / (5000~7000) ~= 0.00001 )
     """
 
-    gnomadg_af_index = header.index('gnomADg_AF') # 28
+    gnomadg_af_index = header.index('gnomADg_AF')
 
     if variant_data[gnomadg_af_index] != '-':
         ratio = float(variant_data[gnomadg_af_index])
