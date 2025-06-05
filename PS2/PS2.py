@@ -31,17 +31,12 @@ def ps2(header, variant_data, variant_evidence):
     :param variant_data: 한 variant의 정보가 순서대로 나열된 list
     :param variant_evidence: main의 variant_evidence list
 
-    해당 evidence 판별에 필요한 Uploaded_variation, Allele data가 없는 경우 아무것도 하지 않고 return
-
     HG002~ 의 de novo variant 정보가 담긴 de_novo_variant_set을 생성하고 (1_main.py 에서 여러번 호출해도 한번만 생성됨)
     variant_data를 de_novo_variant_set에 담긴 data의 포맷에 맞춘다. ('chr1', '209131778', 'A', 'C') -> variant_data_tuple
     variant_data_tuple 이 de_novo_variant_set에 포함되어 있으면, PS2 를 부여하므로 대응 되는 variant_evidence[1] = True,
     """
 
-    missing_option = [option for option in ['Uploaded_variation', 'Allele'] if option not in header]
-    if missing_option:
-        print(f"Please annotate {', '.join(missing_option).lower()}")
-        return
+
     uploaded_variation_index = header.index('Uploaded_variation')
     allele_index = header.index('Allele')
 

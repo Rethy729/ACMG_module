@@ -4,8 +4,6 @@ def pp3_bp4(header, variant_data, variant_evidence):
     :param variant_data: 한 variant의 정보가 순서대로 나열된 list
     :param variant_evidence: main의 variant_evidence list
 
-    해당 evidence 판별에 필요한 SIFT, PolyPhen data가 없는 경우 아무것도 하지 않고 return
-
     SIFT와 PolyPhen in silico tool을 사용
     sift는 tolerated / tolerated_low_confidence / deleterious_low_confidence / deleterious 중 하나
     polyphen은 unknown / benign / possibly_damaging / probably_damaging 중 하나
@@ -13,10 +11,6 @@ def pp3_bp4(header, variant_data, variant_evidence):
     sift -> deleterious & polyphen -> probably_damaging 인 경우 PP3 이므로 대응 하는 variant_evidence[5] = True
     """
 
-    missing_option = [option for option in ['SIFT', 'PolyPhen'] if option not in header]
-    if missing_option:
-        print(f"Please annotate {', '.join(missing_option).lower()}")
-        return
     sift_index = header.index('SIFT') # 22
     polyphen_index = header.index('PolyPhen') # 23
 

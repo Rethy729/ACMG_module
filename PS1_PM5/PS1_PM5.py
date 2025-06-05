@@ -59,8 +59,6 @@ def ps1_pm5(header, variant_data, variant_evidence):
     :param variant_data: 한 variant의 정보가 순서대로 나열된 list
     :param variant_evidence: main의 variant_evidence list
 
-    해당 evidence 판별에 필요한 Location, Consequence, HGVSc, HGVSp data가 없는 경우 아무것도 하지 않고 return
-
     missense variant 중 ClinVar_CLNSIG 가 pathogenic 이며
     ClinVar_CLNREVSTAT 이 'practice_guideline', 'reviewed_by_expert_panel', 'criteria_provided,_multiple_submitters,_no_conflicts', 'criteria_provided,_single_submitter'
     인 경우에 한해 PS1을 부여하여 variant_evidence[0] = True
@@ -72,10 +70,6 @@ def ps1_pm5(header, variant_data, variant_evidence):
     두 variant의 hgvs.p가 다르다면 PM5를 부여하므로 대응 되는 variant_evidence[4] = True
     """
 
-    missing_option = [option for option in ['Location', 'Consequence', 'HGVSc', 'HGVSp', 'ClinVar_CLNSIG', 'ClinVar_CLNREVSTAT'] if option not in header]
-    if missing_option:
-        print(f"Please annotate {', '.join(missing_option).lower()}")
-        return
     location_index = header.index('Location')
     consequence_index = header.index('Consequence')
     hgvs_c_index = header.index('HGVSc')

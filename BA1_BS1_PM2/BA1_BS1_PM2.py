@@ -4,8 +4,6 @@ def ba1_bs1_pm2(header, variant_data, variant_evidence):
     :param variant_data: 한 variant의 정보가 순서대로 나열된 list
     :param variant_evidence: main의 variant_evidence list
 
-    해당 evidence 판별에 필요한 gnomADg_AF data가 없는 경우 아무것도 하지 않고 return
-
     gnomADg_AF의 값을 ratio로 저장
     ratio >= 0.05 -> BA1 이므로 대응 하는 variant_evidence[11] = True
     0.01 <= ratio < 0.05 -> BS1 이므로 대응 하는 variant_evidence[10] = True
@@ -15,10 +13,6 @@ def ba1_bs1_pm2(header, variant_data, variant_evidence):
     0.00001 (0.001%) 는 Incidence 기준 (유병률) ( (4억/80억) / (5000~7000) ~= 0.00001 )
     """
 
-    if 'gnomADg_AF' not in header:
-        print("BA1, BS1, PM2 not determined")
-        print("Please annotate gnomADg_AF")
-        return
     gnomadg_af_index = header.index('gnomADg_AF') # 28
 
     if variant_data[gnomadg_af_index] != '-':

@@ -30,18 +30,12 @@ def pm4_bp3(header, variant_data, variant_evidence):
     :param variant_data: 한 variant의 정보가 순서대로 나열된 list
     :param variant_evidence: main의 variant_evidence list
 
-    해당 evidence 판별에 필요한 Consequence가 없는 경우 아무것도 하지 않고 return
-
     Consequence 정보가 stop_lost 인 경우, PM4 부여하므로 대응 되는 variant_evidence[3] = True
     Consequence 정보가 inframe_insertion / inframe_deletion 인 경우엔 추가로 rmsk_dict 를 생성한다.
     이외에 variant 구간이 어떤 rmsk 구간에 완전히 포함되는 경우에만 BP3을 부여하므로 대응되는 variant_evidence[7] = True
     그 이외의 경우에는 PM4 부여하므로 대응되는 variant_evidence[3] = True
     """
 
-    missing_option = [option for option in ['Location', 'Consequence'] if option not in header]
-    if missing_option:
-        print(f"Please annotate {', '.join(missing_option).lower()}")
-        return
     location_index = header.index('Location')
     consequence_index = header.index('Consequence')
 

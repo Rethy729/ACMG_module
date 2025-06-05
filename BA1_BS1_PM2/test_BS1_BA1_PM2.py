@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import patch
 from BA1_BS1_PM2 import ba1_bs1_pm2
 
 class TestBA1BS1PM2(unittest.TestCase):
@@ -53,20 +52,6 @@ class TestBA1BS1PM2(unittest.TestCase):
         variant_data = ['data1', '0.00005', 'data2']
         variant_evidence = [False] * 12
         ba1_bs1_pm2(self.header, variant_data, variant_evidence)
-        self.assertFalse(all(b for b in variant_evidence))
-
-    @patch('builtins.print')
-    def test_missing_gnomadg_af_field(self, mock_print):
-        header_missing = ['field1', 'field2']
-        variant_data = ['data1', 'data2']
-        variant_evidence = [False] * 12
-        ba1_bs1_pm2(header_missing, variant_data, variant_evidence)
-
-        self.assertEqual(mock_print.call_count, 2)
-        calls = [call.args[0] for call in mock_print.call_args_list]
-        self.assertIn("BA1, BS1, PM2 not determined", calls)
-        self.assertIn("Please annotate gnomADg_AF", calls)
-
         self.assertFalse(all(b for b in variant_evidence))
 
 if __name__ == '__main__':
