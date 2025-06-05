@@ -16,6 +16,7 @@ def ba1_bs1_pm2(header, variant_data, variant_evidence):
     """
 
     if 'gnomADg_AF' not in header:
+        print("BA1, BS1, PM2 not determined")
         print("Please annotate gnomADg_AF")
         return
     gnomadg_af_index = header.index('gnomADg_AF') # 28
