@@ -1,6 +1,6 @@
 import time
 from PS2 import PS2
-from BS1_BA1_PM2 import BS1_BA1_PM2
+from BA1_BS1_PM2 import BA1_BS1_PM2
 from PP3_BP4 import PP3_BP4
 from PP5_BP6 import PP5_BP6
 from PM4_BP3 import PM4_BP3
@@ -31,7 +31,7 @@ with open(file_path, encoding='utf-8') as f_in, open(output_path, 'w', encoding=
         total_line += 1
 
         PS1_PM5.ps1_pm5(header, variant_data, variant_evidence)
-        BS1_BA1_PM2.ba1_bs1_pm2(header, variant_data, variant_evidence)
+        BA1_BS1_PM2.ba1_bs1_pm2(header, variant_data, variant_evidence)
         PP3_BP4.pp3_bp4(header, variant_data, variant_evidence)
         PP5_BP6.pp5_bp6(header, variant_data, variant_evidence)
         PM4_BP3.pm4_bp3(header, variant_data, variant_evidence)

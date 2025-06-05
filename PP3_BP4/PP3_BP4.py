@@ -11,8 +11,6 @@ def pp3_bp4(header, variant_data, variant_evidence):
     polyphen은 unknown / benign / possibly_damaging / probably_damaging 중 하나
     sift -> tolerated & polyphen -> benign 인 경우 BP4 이므로 대응 하는 variant_evidence[8] = True
     sift -> deleterious & polyphen -> probably_damaging 인 경우 PP3 이므로 대응 하는 variant_evidence[5] = True
-
-    추후 고려 사항: sift와 polyphen의 점수에 따른 임의 판별 기준 &  MutationTaster의 사용
     """
 
     missing_option = [option for option in ['SIFT', 'PolyPhen'] if option not in header]
