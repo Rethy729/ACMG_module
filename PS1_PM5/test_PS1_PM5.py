@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch, mock_open
-from collections import defaultdict
 
 from PS1_PM5 import ps1_pm5
 
