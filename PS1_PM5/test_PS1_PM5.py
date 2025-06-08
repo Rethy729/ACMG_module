@@ -29,9 +29,8 @@ class TestPS1PM5(unittest.TestCase):
                     else:
                         self.assertTrue(variant_evidence[0])
 
-    '''
-    @patch('your_module.clinvar_dict_generator', return_value={})
-    def test_missense_not_pathogenic(self):
+    @patch('PS1_PM5.clinvar_dict_generator', return_value={})
+    def test_missense_not_pathogenic(self, mock_dict_gen):
         variant_data = [
             'chr1:12345', 'missense_variant',
             'NM_000000.0:c.111A>G', 'NP_000000.0:p.Gly11Arg',
@@ -40,7 +39,7 @@ class TestPS1PM5(unittest.TestCase):
         variant_evidence = [False] * 12
         ps1_pm5(self.header, variant_data, variant_evidence)
         self.assertFalse(all(b for b in variant_evidence))
-    '''
+
 
     @patch('PS1_PM5.clinvar_dict_generator')
     def test_diff_hgvsc_same_hgvsp_ps1(self, mock_dict_gen):
