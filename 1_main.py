@@ -28,7 +28,7 @@ if data_check(header):
         total_line = 0
 
         evidence_count_list = [0] * len(evidence)
-        f_out.write('variant\t' + '\t'.join(evidence) + '\n')
+        f_out.write('variant\t' + 'allele\t' + 'mane\t' + '\t'.join(evidence) + '\n')
         for line in f_in:
             variant_evidence = [False] * len(evidence)
             variant_data = line.strip().split('\t')
