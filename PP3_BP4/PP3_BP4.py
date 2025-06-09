@@ -11,8 +11,8 @@ def pp3_bp4(header, variant_data, variant_evidence):
     sift -> deleterious & polyphen -> probably_damaging 인 경우 PP3 이므로 대응 하는 variant_evidence[5] = True
     """
 
-    sift_index = header.index('SIFT') # 22
-    polyphen_index = header.index('PolyPhen') # 23
+    sift_index = header.index('SIFT')
+    polyphen_index = header.index('PolyPhen')
 
     sift_value = variant_data[sift_index]
     polyphen_value = variant_data[polyphen_index]
