@@ -9,6 +9,3 @@ ACMG_result.tsv -> 결과
     (1_main.py 에서 PM4_BP3.py / PP3_BP4.py / PP5_BP6.py / BS1_BA1_PM2.py / PS1_PM5.py / PS2.py 모듈을 불러오는 구조)
 
 2. 결과는 ACMG_result.tsv 에 저장
-
-추후 계획:
-Test code
