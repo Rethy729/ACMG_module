@@ -6,7 +6,7 @@ def data_check(header):
 
     missing_option = [option for option in ['Uploaded_variation', 'Allele', 'Location', 'Consequence', 'gnomADg_AF', 'SIFT', 'PolyPhen','HGVSc', 'HGVSp', 'ClinVar_CLNSIG', 'ClinVar_CLNREVSTAT'] if option not in header]
     if missing_option:
-        print(f"Please annotate {', '.join(missing_option).lower()}")
+        print(f"Please annotate {', '.join(missing_option)}")
         return False
     else:
         return True

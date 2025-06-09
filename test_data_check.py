@@ -25,7 +25,7 @@ class TestDataCheck(unittest.TestCase):
         result = data_check(header)
         self.assertFalse(result)
         output = mock_stdout.getvalue()
-        self.assertIn('please annotate sift, hgvsp', output.lower())
+        self.assertIn('Please annotate SIFT, HGVSp', output)
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_all_headers_missing(self, mock_stdout):
@@ -33,6 +33,6 @@ class TestDataCheck(unittest.TestCase):
         result = data_check(header)
         self.assertFalse(result)
         output = mock_stdout.getvalue()
-        self.assertIn("please annotate", output.lower())
+        self.assertIn("Please annotate", output)
         for field in self.required_fields:
-            self.assertIn(field.lower(), output.lower())
+            self.assertIn(field, output)
